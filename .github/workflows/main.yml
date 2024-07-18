@@ -14,14 +14,13 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.7.2
-
-    - name: Terraform Init
-      run: terraform init
-
       
     - name: Execute PowerShell script
       shell: pwsh
       run: ./env.ps1
+
+    - name: Terraform Init
+      run: terraform init
 
     - name: Terraform Plan
       run: terraform plan --var-file="workflow.tfvars" --var-file="policy.tfvars"
