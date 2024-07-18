@@ -1,2 +1,2 @@
-$env:TF_VAR_apikey = $env:{{ secrets.API_KEY }}
-$env:TF_VAR_accountID = $env:{{ secrets.ACCOUNT_ID }}
+$env:TF_VAR_apikey = $env:{{ secrets.apikey }}
+$env:TF_VAR_accountID = $env:{{ secrets.accountID }}
