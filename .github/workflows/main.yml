@@ -31,4 +31,4 @@ jobs:
       env:
         NEW_RELIC_ACCOUNT_ID: ${{ secrets.ACCOUNTID }}
         NEW_RELIC_API_KEY: ${{ secrets.APIKEY }}
-      run: terraform apply --auto-approve --var-file="workflow.tfvars" --var-file="policy.tfvars"
+      run: terraform apply --auto-approve -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars" 
