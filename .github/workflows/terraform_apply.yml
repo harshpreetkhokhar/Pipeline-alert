@@ -23,4 +23,4 @@ jobs:
       env:
         apikey: ${{ secrets.apikey }}
         accountID: ${{secrets.accountID}}
-      run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars" 
+      run: terraform destroy --auto-approve -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars" 
