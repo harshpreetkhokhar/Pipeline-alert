@@ -25,4 +25,4 @@ jobs:
       run: terraform init
 
     - name: Terraform Plan
-      run: terraform plan --var-file="workflow.tfvars" --var-file"policy.tfvars"
+      run: terraform plan --var-file="workflow.tfvars" --var-file="policy.tfvars"
