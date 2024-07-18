@@ -18,9 +18,20 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-  
+    - name: Terraform Plan
+      env:
+        accountID: ${{ secrets.ACCOUNTID }}
+        apikey: ${{ secrets.APIKEY }}
+      run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars" 
+
+    - name: Terraform Apply
+      env:
+        accountID: ${{ secrets.ACCOUNTID }}
+        apikey: ${{ secrets.APIKEY }}
+      run: terraform apply --auto-approve -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars"
+
     - name: Terraform destroy 
       env:
         apikey: ${{ secrets.apikey }}
         accountID: ${{secrets.accountID}}
-      run: terraform destroy --auto-approve -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars" 
+      run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars" 
