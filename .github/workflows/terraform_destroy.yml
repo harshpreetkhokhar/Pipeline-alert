@@ -6,20 +6,9 @@ on:
 jobs:
   destroy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.7.2
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Destroy
-        env:
-        apikey: ${{ secrets.apikey }}
-        accountID: ${{secrets.accountID}}
-      run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars"
+    env:
+      apikey: ${{ secrets.apikey }}
+      accountID: ${{secrets.accountID}}
+     steps:
+     - name: Terraform destroy 
+       run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars"
