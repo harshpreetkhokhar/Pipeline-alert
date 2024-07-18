@@ -4,11 +4,11 @@ on:
   push:  
 
 jobs:
-  destroy:
-    runs-on: ubuntu-latest
-    env:
+ tf-destroy:
+   runs-on: ubuntu-latest
+   env:
       apikey: ${{ secrets.apikey }}
       accountID: ${{secrets.accountID}}
-     steps:
-     - name: Terraform destroy 
-       run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars"
+   steps:
+   - name: Terraform destroy 
+     run: terraform plan -var="accountID=$accountID" -var="apikey=$apikey" --var-file="workflow.tfvars" --var-file="policy.tfvars"
