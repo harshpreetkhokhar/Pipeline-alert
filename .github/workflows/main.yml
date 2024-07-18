@@ -27,3 +27,6 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan --var-file="workflow.tfvars" --var-file="policy.tfvars"
+
+    - name: Terraform apply
+      run: terraform apply --auto-approve --var-file="workflow.tfvars" --var-file"policy.tfvars"
