@@ -15,19 +15,20 @@ jobs:
       with:
         terraform_version: 1.7.2
 
-    - name: Configure Terraform
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Plan
       env:
         NEW_RELIC_ACCOUNT_ID: ${{ secrets.ACCOUNTID }}
         NEW_RELIC_API_KEY: ${{ secrets.APIKEY }}
       run: |
-        echo "export TF_VAR_accountID=${NEW_RELIC_ACCOUNT_ID}" >> $GITHUB_ENV
-        echo "export TF_VAR_new_apikey=${NEW_RELIC_API_KEY}" >> $GITHUB_ENV
-        
-    - name: Terraform Init
-      run: terraform init
-      
-    - name: Terraform Plan
-      run: terraform plan --var-file="workflow.tfvars" --var-file="policy.tfvars"
+        echo "export TF_VAR_accountid=${NEW_RELIC_ACCOUNT_ID}" >> $GITHUB_ENV
+        echo "export TF_VAR_apikey=${NEW_RELIC_API_KEY}" >> $GITHUB_ENV    
+        terraform plan --var-file="workflow.tfvars" --var-file="policy.tfvars"
 
-    - name: Terraform apply
-      run: terraform apply --auto-approve --var-file="workflow.tfvars" --var-file"policy.tfvars"
+    - name: Terraform Apply
+      env:
+        NEW_RELIC_ACCOUNT_ID: ${{ secrets.ACCOUNTID }}
+        NEW_RELIC_API_KEY: ${{ secrets.APIKEY }}
+      run: terraform apply --auto-approve --var-file="workflow.tfvars" --var-file="policy.tfvars"
