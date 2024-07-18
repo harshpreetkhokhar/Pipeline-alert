@@ -23,7 +23,7 @@ jobs:
         NEW_RELIC_ACCOUNT_ID: ${{ secrets.ACCOUNTID }}
         NEW_RELIC_API_KEY: ${{ secrets.APIKEY }}
       run: |
-        echo "export TF_VAR_accountid=${NEW_RELIC_ACCOUNT_ID}" >> $GITHUB_ENV
+        echo "export TF_VAR_accountID=${NEW_RELIC_ACCOUNT_ID}" >> $GITHUB_ENV
         echo "export TF_VAR_apikey=${NEW_RELIC_API_KEY}" >> $GITHUB_ENV    
         terraform plan --var-file="workflow.tfvars" --var-file="policy.tfvars"
 
